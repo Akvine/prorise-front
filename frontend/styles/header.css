@@ -1,0 +1,33 @@
+[part="drawer"] {
+    background: var(--lumo-shade-10pct);
+}
+
+[part="navbar"] {
+    background-color: white;
+    box-shadow: var(--lumo-box-shadow-xs);
+}
+
+.menu-button {
+    display: none;
+}
+
+.menu-link:hover {
+    background-color: var(--lumo-contrast-10pct);
+}
+
+@media only screen and (max-width: 600px) {
+    .menu-button {
+        display: block;
+    }
+
+    [part="navbar"] {
+        padding: 0;
+    }
+
+    .menu-link {
+        display: block;
+        text-align: center;
+        border-top: 1px solid var(--lumo-shade-10pct);
+        padding: var(--lumo-space-s) var(--lumo-space-m);
+    }
+}
