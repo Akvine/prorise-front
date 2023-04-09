@@ -2,13 +2,13 @@ package ru.akvine.prorisefront.views;
 
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import ru.akvine.prorisefront.services.KPIService;
+import ru.akvine.prorisefront.views.component.Footer;
+import ru.akvine.prorisefront.views.component.Header;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Route("/kpi")
@@ -23,6 +23,8 @@ public class KPIView extends VerticalLayout {
         chart = createChart();
         add(chart);
 
+        Footer footer = new Footer();
+        add(footer);
         updateChartData();
     }
 

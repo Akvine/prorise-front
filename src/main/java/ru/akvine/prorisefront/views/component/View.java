@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.views.component;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.Route;
