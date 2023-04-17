@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Footer;
 import ru.akvine.prorisefront.components.Header;
 import ru.akvine.prorisefront.views.dto.User;
 
@@ -47,6 +48,7 @@ public class ProfileSettingsView extends VerticalLayout {
         lastNameField.setValue(user.getLastName());
         emailField.setValue(user.getEmail());
         notificationsCheckbox.setValue(user.isReceiveNotifications());
+        add(new Footer());
     }
 
     private User getCurrentUser() {

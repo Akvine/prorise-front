@@ -1,42 +1,75 @@
 package ru.akvine.prorisefront.components;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.page.Page;
 
 @CssImport(value= "./styles/footer.css", themeFor="vaadin-app-layout")
 public class Footer extends HorizontalLayout {
     public Footer() {
-        setPadding(true);
-        setSpacing(true);
-        setWidthFull();
-        setHeight("100px");
-//        setMargin(Top.BOTTOM, "0");
-        setAlignItems(Alignment.CENTER);
+        // ... добавляем содержимое страницы ...
 
-        // Создаем компоненты, которые будут отображаться в footer'е
-        Span text = new Span("All rights reserved © 2023");
-        Button contactUsButton = new Button("Contact Us");
+        // создаем футер
+        HorizontalLayout footer = new HorizontalLayout();
+        footer.getStyle().set("background-color", "#333333"); // установка темного фона
+        footer.setPadding(true);
+        footer.setSpacing(true);
+        footer.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        // Стилизуем компоненты
-        text.getStyle().set("font-size", "14px")
-                .set("font-weight", "bold")
-                .set("color", "white");
+        // добавляем ссылки на социальные сети
+        Icon facebookIcon = new Icon(VaadinIcon.FACEBOOK);
+        Icon twitterIcon = new Icon(VaadinIcon.TWITTER);
+        facebookIcon.getStyle().set("cursor", "pointer");
+        facebookIcon.getStyle().set("color", "#333333");
+        twitterIcon.getStyle().set("cursor", "pointer");
+        twitterIcon.getStyle().set("color", "#333333");
 
-        contactUsButton.getStyle().set("background-color", "#5B5B5B")
-                .set("color", "white")
-                .set("font-size", "14px")
-                .set("font-weight", "bold")
-                .set("padding", "12px 20px")
-                .set("border-radius", "30px")
-                .set("cursor", "pointer");
+        Div facebookContainer = new Div(facebookIcon);
+        Div twitterContainer = new Div(twitterIcon);
+        facebookContainer.getStyle().set("background-color", "#ffffff");
+        facebookContainer.getStyle().set("border-radius", "50%");
+        facebookContainer.setWidth("42px");
+        facebookContainer.setHeight("42px");
+        twitterContainer.getStyle().set("background-color", "#ffffff");
+        twitterContainer.getStyle().set("border-radius", "50%");
+        twitterContainer.setWidth("42px");
+        twitterContainer.setHeight("42px");
 
-        // Добавляем компоненты в footer
-        add(text, contactUsButton);
 
-        // Устанавливаем выравнивание компонентов в footer
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setVerticalComponentAlignment(Alignment.CENTER, text, contactUsButton);
+        footer.add(facebookContainer, twitterContainer);
+
+        // добавляем контакты
+        Label emailLabel = new Label("support@example.com");
+        emailLabel.getStyle().set("cursor", "pointer");
+        emailLabel.getStyle().set("color", "#ffffff");
+        emailLabel.addAttachListener(event -> {
+            // открываем почтовый клиент по умолчанию для отправки письма на указанный адрес электронной почты
+            Page page = new Page(getUI().get());
+            page.executeJs("window.location.href = 'mailto:support@example.com'");
+        });
+        Label phoneLabel = new Label("+1 (123) 456-7890");
+        phoneLabel.getStyle().set("cursor", "pointer");
+        phoneLabel.getStyle().set("color", "#ffffff");
+        phoneLabel.addAttachListener(event -> {
+            // открываем приложение телефона по умолчанию для набора указанного номера телефона
+            Page page = new Page(getUI().get());
+            page.executeJs("window.location.href = 'tel:+11234567890'");
+        });
+        footer.add(emailLabel, phoneLabel);
+
+        // добавляем ссылку на пользовательское соглашение
+        Anchor termsAnchor = new Anchor("/terms", "Условия использования");
+        termsAnchor.getStyle().set("cursor", "pointer");
+        termsAnchor.getStyle().set("color", "#ffffff");
+        termsAnchor.setTarget("_blank");
+        footer.add(termsAnchor);
+
+        add(footer);
     }
 }

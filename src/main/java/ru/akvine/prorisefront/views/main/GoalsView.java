@@ -8,6 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Footer;
 import ru.akvine.prorisefront.components.Header;
 import ru.akvine.prorisefront.views.dto.Goal;
 import ru.akvine.prorisefront.views.dto.GoalStatus;
@@ -42,6 +43,7 @@ public class GoalsView extends VerticalLayout {
         formLayout.setAlignItems(Alignment.BASELINE);
 
         add(grid, formLayout);
+        add(new Footer());
     }
 
     private List<Goal> getGoals() {

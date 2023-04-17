@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Footer;
 import ru.akvine.prorisefront.components.Header;
 
 import java.time.Duration;
@@ -77,6 +78,7 @@ public class TimeTrackerView extends VerticalLayout {
         timeGrid.setSizeFull();
 
         add(title, sectionLayout, buttonLayout, timeGrid);
+        add(new Footer());
     }
 
     private String formatDuration(Duration duration) {

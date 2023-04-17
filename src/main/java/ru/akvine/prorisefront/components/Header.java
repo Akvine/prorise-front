@@ -12,7 +12,6 @@ import com.vaadin.flow.router.RouterLink;
 
 @CssImport(value= "./styles/header.css", themeFor="vaadin-app-layout")
 public class Header extends AppLayout {
-    private AppLayout appLayout;
     public Header() {
         setContent(buildHeader());
     }

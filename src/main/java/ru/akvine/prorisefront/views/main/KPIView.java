@@ -21,9 +21,8 @@ public class KPIView extends VerticalLayout {
         chart = createChart();
         add(chart, new Header());
 
-        Footer footer = new Footer();
-        add(footer);
         updateChartData();
+        add(new Footer());
     }
 
     private Chart createChart() {
