@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views.component;
+package ru.akvine.prorisefront.spring;
 
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.textfield.TextArea;

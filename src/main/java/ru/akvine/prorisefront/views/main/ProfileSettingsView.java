@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.views.main;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -7,7 +7,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import ru.akvine.prorisefront.views.component.AppLayoutBasic;
+import ru.akvine.prorisefront.components.Header;
 import ru.akvine.prorisefront.views.dto.User;
 
 @Route("profile/settings")
@@ -23,7 +23,7 @@ public class ProfileSettingsView extends VerticalLayout {
     private final Checkbox notificationsCheckbox = new Checkbox("Receive notifications");
 
     public ProfileSettingsView() {
-        add(new AppLayoutBasic());
+        add(new Header());
         FormLayout formLayout = new FormLayout();
         formLayout.addFormItem(firstNameField, "First Name");
         formLayout.addFormItem(lastNameField, "Last Name");

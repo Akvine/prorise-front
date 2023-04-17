@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.views.main;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Header;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -25,6 +26,7 @@ public class TimeTrackerView extends VerticalLayout {
     private Grid<SectionTime> timeGrid = new Grid<>(SectionTime.class);
 
     public TimeTrackerView() {
+        add(new Header());
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         H1 title = new H1("Time Tracker");

@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.views.security;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;

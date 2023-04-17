@@ -1,12 +1,12 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.views.main;
 
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Footer;
+import ru.akvine.prorisefront.components.Header;
 import ru.akvine.prorisefront.services.KPIService;
-import ru.akvine.prorisefront.views.component.AppLayoutBasic;
-import ru.akvine.prorisefront.views.component.Footer;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,9 +18,8 @@ public class KPIView extends VerticalLayout {
 
     public KPIView(KPIService kpiService) {
         this.kpiService = kpiService;
-        AppLayoutBasic appLayoutBasic = new AppLayoutBasic();
         chart = createChart();
-        add(chart, appLayoutBasic);
+        add(chart, new Header());
 
         Footer footer = new Footer();
         add(footer);

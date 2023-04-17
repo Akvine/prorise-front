@@ -1,4 +1,4 @@
-package ru.akvine.prorisefront.views;
+package ru.akvine.prorisefront.spring;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -8,7 +8,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
-import ru.akvine.prorisefront.views.component.CodeMirrorTextArea;
 
 @Route("spring-task")
 @CssImport(value = "./styles/code-editor.css", themeFor = "vaadin-text-area")
