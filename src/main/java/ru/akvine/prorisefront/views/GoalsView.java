@@ -8,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import ru.akvine.prorisefront.views.component.Header;
+import ru.akvine.prorisefront.views.component.AppLayoutBasic;
 import ru.akvine.prorisefront.views.dto.Goal;
 import ru.akvine.prorisefront.views.dto.GoalStatus;
 import ru.akvine.prorisefront.views.dto.GoalType;
@@ -29,7 +29,7 @@ public class GoalsView extends VerticalLayout {
     private final HorizontalLayout formLayout = new HorizontalLayout(nameField, typeComboBox, startDatePicker, endDatePicker, addButton, updateButton, deleteButton);
 
     public GoalsView() {
-        add(new Header());
+        add(new AppLayoutBasic());
         typeComboBox.setItems(GoalType.values());
 
         grid.setColumns("name", "type", "startDate", "endDate", "goalStatus");

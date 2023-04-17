@@ -1,0 +1,105 @@
+.CodeMirror {
+    height: auto;
+    border: none;
+}
+
+.cm-s-eclipse {
+    font-size: 14px;
+}
+
+.CodeMirror pre {
+    padding: 0;
+    border-radius: 0;
+    line-height: 1.2em;
+}
+
+.cm-s-eclipse .cm-comment {
+    color: #008000;
+}
+
+.cm-s-eclipse .cm-string {
+    color: #ba2121;
+}
+
+.cm-s-eclipse .cm-keyword {
+    color: #267f99;
+}
+
+.cm-s-eclipse .cm-atom {
+    color: #9a0eea;
+}
+
+.cm-s-eclipse .cm-number {
+    color: #aa0d91;
+}
+
+.cm-s-eclipse .cm-operator {
+    color: #7d7d7d;
+}
+
+.cm-s-eclipse .cm-variable {
+    color: #c82829;
+}
+
+.cm-s-eclipse .cm-property {
+    color: #c792ea;
+}
+
+.cm-s-eclipse .cm-def {
+    color: #7b0051;
+}
+
+.cm-s-eclipse .cm-bracket {
+    color: #000;
+}
+
+.cm-s-eclipse .cm-tag {
+    color: #267f99;
+}
+
+.cm-s-eclipse .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: #a22;
+}
+
+.cm-s-eclipse .CodeMirror-matchingtag {
+    background: #ddd;
+}
+
+.cm-s-eclipse .CodeMirror-activeline-background {
+    background: #f8f8f8;
+}
+
+.cm-s-eclipse .CodeMirror-activeline-gutter {
+    background-color: #f8f8f8;
+}
+
+.cm-s-eclipse .CodeMirror-matchingbracket,
+.cm-s-eclipse .CodeMirror-matchingtag,
+.cm-s-eclipse .CodeMirror-activeline-background {
+    position: relative;
+    z-index: 1;
+}
+
+.CodeMirror-matchingtag {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.CodeMirror-focused .CodeMirror-selected {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.CodeMirror-selected {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cm-s-eclipse .CodeMirror-cursor {
+    border-left: 1px solid #000;
+}
+
+.cm-s-eclipse .CodeMirror-matchingtag,
+.cm-s-eclipse .CodeMirror-matchingbracket {
+    border: none;
+    background: none;
+}
