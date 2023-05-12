@@ -6,7 +6,6 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import ru.akvine.prorisefront.components.Footer;
 import ru.akvine.prorisefront.components.Header;
 
 import java.time.LocalDate;
@@ -70,6 +69,5 @@ public class ReportsView extends HorizontalLayout {
 // Добавляем компоненты на страницу отчетности
 //        reportLayout.add(filterLayout, performanceGrid);
         reportLayout.add(filterLayout);
-        add(reportLayout, new Footer());
     }
 }

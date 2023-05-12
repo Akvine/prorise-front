@@ -9,8 +9,12 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
+import ru.akvine.prorisefront.views.main.GoalsView;
+import ru.akvine.prorisefront.views.main.ProfileSettingsView;
+import ru.akvine.prorisefront.views.main.ReportsView;
+import ru.akvine.prorisefront.views.main.TimeTrackerView;
 
-@CssImport(value= "./styles/header.css", themeFor="vaadin-app-layout")
+@CssImport(value = "./styles/header.css", themeFor = "vaadin-app-layout")
 public class Header extends AppLayout {
     public Header() {
         setContent(buildHeader());
@@ -20,10 +24,10 @@ public class Header extends AppLayout {
         Image logo = new Image("https://via.placeholder.com/150x50?text=Logo", "Logo");
 
         // Список ссылок на страницы
-        RouterLink page1Link = new RouterLink("Генерация отчетов", View.class);
-        RouterLink page2Link = new RouterLink("Цели", View2.class);
-        RouterLink page3Link = new RouterLink("Учет времени", View2.class);
-        RouterLink page4Link = new RouterLink("Настройки профиля", View2.class);
+        RouterLink page1Link = new RouterLink("Генерация отчетов", ReportsView.class);
+        RouterLink page2Link = new RouterLink("Цели", GoalsView.class);
+        RouterLink page3Link = new RouterLink("Учет времени", TimeTrackerView.class);
+        RouterLink page4Link = new RouterLink("Настройки профиля", ProfileSettingsView.class);
 
         // Кнопка "Sign In"
         Button signInButton = new Button("Войти");
