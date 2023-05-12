@@ -24,7 +24,6 @@ public class FirstRow extends HorizontalLayout {
         Configuration conf = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
-        conf.setTitle("Производительность");
 
         XAxis xAxis = new XAxis();
         xAxis.setTitle("Время");
@@ -55,20 +54,29 @@ public class FirstRow extends HorizontalLayout {
 
     private Chart createAreaChart() {
         Chart chart = new Chart(ChartType.AREA);
-        Configuration configuration = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
 
-        DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(1, 10));
-        dataSeries.add(new DataSeriesItem(2, 20));
-        dataSeries.add(new DataSeriesItem(3, 15));
-        dataSeries.add(new DataSeriesItem(4, 25));
+        List<Number> revenueData = List.of(1, 2, 4);
+        List<Number> profitData = List.of(9, 1, 18);
+        List<Number> customerCountData = List.of(4, 1, 4);
+
+        ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
+        chart.getConfiguration().addSeries(revenueSeries);
+        chart.getConfiguration().getChart().setColorCount(3);
+
+        ListSeries profitSeries = new ListSeries("Качество работы", profitData);
+        chart.getConfiguration().addSeries(profitSeries);
+        chart.getConfiguration().getChart().setColorCount(2);
+
+        ListSeries customerCountSeries = new ListSeries("Уровень удовлетворённости клиентов", customerCountData);
+        chart.getConfiguration().addSeries(customerCountSeries);
+        chart.getConfiguration().getChart().setColorCount(1);
 
         PlotOptionsArea plotOptions = new PlotOptionsArea();
-        dataSeries.setPlotOptions(plotOptions);
-
-        configuration.setSeries(dataSeries);
+        revenueSeries.setPlotOptions(plotOptions);
+        profitSeries.setPlotOptions(plotOptions);
+        customerCountSeries.setPlotOptions(plotOptions);
 
         return chart;
     }
