@@ -50,60 +50,41 @@ public class LinePlots extends HorizontalLayout {
         chart.setWidth("500px");
         chart.setHeight("500px");
 
-        XAxis xAxis = new XAxis();
-        xAxis.setTitle("Время");
-        configuration.addxAxis(xAxis);
-
-        YAxis yAxis = new YAxis();
-        yAxis.setTitle("Значение");
-        configuration.addyAxis(yAxis);
-
-        configuration.setTooltip(new Tooltip());
-
         DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(0, 5));
-        dataSeries.add(new DataSeriesItem(1, 10));
-        dataSeries.add(new DataSeriesItem(2, 8));
-        dataSeries.add(new DataSeriesItem(3, 12));
-        dataSeries.add(new DataSeriesItem(4, 6));
+        dataSeries.add(new DataSeriesItem(1, 1, 10));
+        dataSeries.add(new DataSeriesItem(2, 2, 20));
+        dataSeries.add(new DataSeriesItem(3, 3, 30));
 
-        configuration.addSeries(dataSeries);
+        PlotOptionsBubble plotOptions = new PlotOptionsBubble();
+        plotOptions.setMinSize("10");
+        plotOptions.setMaxSize("30");
 
-        PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setEnableMouseTracking(true);
         dataSeries.setPlotOptions(plotOptions);
+
+        configuration.setSeries(dataSeries);
 
         return chart;
     }
 
     private Chart createThirdPlot() {
         Chart chart = new Chart(ChartType.HEATMAP);
+        Configuration configuration = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
-        Configuration configuration = chart.getConfiguration();
-
-        XAxis xAxis = new XAxis();
-        xAxis.setTitle("Время");
-        configuration.addxAxis(xAxis);
-
-        YAxis yAxis = new YAxis();
-        yAxis.setTitle("Значение");
-        configuration.addyAxis(yAxis);
-
-        configuration.setTooltip(new Tooltip());
 
         DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(0, 5));
-        dataSeries.add(new DataSeriesItem(1, 10));
-        dataSeries.add(new DataSeriesItem(2, 8));
-        dataSeries.add(new DataSeriesItem(3, 12));
-        dataSeries.add(new DataSeriesItem(4, 6));
+        dataSeries.add(new DataSeriesItem(0, 0, 10));
+        dataSeries.add(new DataSeriesItem(0, 1, 20));
+        dataSeries.add(new DataSeriesItem(1, 0, 30));
+        dataSeries.add(new DataSeriesItem(1, 1, 40));
 
-        configuration.addSeries(dataSeries);
+        PlotOptionsHeatmap plotOptions = new PlotOptionsHeatmap();
+        plotOptions.setColsize(0.5);
+        plotOptions.setRowsize(0.5);
 
-        PlotOptionsLine plotOptions = new PlotOptionsLine();
-        plotOptions.setEnableMouseTracking(true);
         dataSeries.setPlotOptions(plotOptions);
+
+        configuration.setSeries(dataSeries);
 
         return chart;
     }

@@ -27,10 +27,12 @@ public class FilterBox extends HorizontalLayout {
         DatePicker endDatePicker = new DatePicker();
         endDatePicker.setLabel("Конечная дата");
 
+        Button analyzeButton = new Button("Провести анализ");
+
         Button button = new Button("Применить фильтр");
         button.addClickListener(event -> {
             Notification.show("Фильтр: " + textField.getValue() + " " + startDatePicker.getValue() + " " + endDatePicker.getValue());
         });
-        add(comboBox, textField, startDatePicker, endDatePicker);
+        add(comboBox, textField, startDatePicker, endDatePicker, button, analyzeButton);
     }
 }

@@ -1,6 +1,5 @@
 package ru.akvine.prorisefront.views.main;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -20,8 +19,6 @@ public class KPIView extends VerticalLayout {
         this.kpiService = kpiService;
         this.comboBox = new ComboBox<>();
 
-        Button analyzeButton = new Button("Провести анализ");
-
         Charts charts = new Charts();
         charts.updateChartData();
         LinePlots linePlots = new LinePlots();
@@ -30,6 +27,5 @@ public class KPIView extends VerticalLayout {
 
         add(charts, linePlots);
         add(filterBox);
-        add(analyzeButton);
     }
 }

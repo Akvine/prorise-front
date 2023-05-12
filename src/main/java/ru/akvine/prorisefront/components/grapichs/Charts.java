@@ -2,6 +2,8 @@ package ru.akvine.prorisefront.components.grapichs;
 
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
+import com.vaadin.flow.component.charts.model.style.Color;
+import com.vaadin.flow.component.charts.model.style.GradientColor;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 import java.math.BigDecimal;
@@ -39,18 +41,20 @@ public class Charts extends HorizontalLayout {
 
     private Chart createSecondChart() {
         Chart chart = new Chart(ChartType.AREA);
-        Configuration conf = chart.getConfiguration();
+        Configuration configuration = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
-        conf.setTitle("Качество работы");
 
-        XAxis xAxis = new XAxis();
-        xAxis.setTitle("Время");
-        conf.addxAxis(xAxis);
+        DataSeries dataSeries = new DataSeries();
+        dataSeries.add(new DataSeriesItem(1, 10));
+        dataSeries.add(new DataSeriesItem(2, 20));
+        dataSeries.add(new DataSeriesItem(3, 15));
+        dataSeries.add(new DataSeriesItem(4, 25));
 
-        YAxis yAxis = new YAxis();
-        yAxis.setTitle("Значение");
-        conf.addyAxis(yAxis);
+        PlotOptionsArea plotOptions = new PlotOptionsArea();
+        dataSeries.setPlotOptions(plotOptions);
+
+        configuration.setSeries(dataSeries);
 
         return chart;
     }

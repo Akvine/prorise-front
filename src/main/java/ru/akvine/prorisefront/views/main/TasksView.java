@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Route("/goals")
-public class GoalsView extends VerticalLayout {
+public class TasksView extends VerticalLayout {
     private final Grid<Goal> grid = new Grid<>(Goal.class);
     private final TextField nameField = new TextField("Название");
     private final ComboBox<GoalType> typeComboBox = new ComboBox<>("Тип цели");
@@ -28,7 +28,7 @@ public class GoalsView extends VerticalLayout {
     private final Button deleteButton = new Button("Удалить");
     private final HorizontalLayout formLayout = new HorizontalLayout(nameField, typeComboBox, startDatePicker, endDatePicker, addButton, updateButton, deleteButton);
 
-    public GoalsView() {
+    public TasksView() {
         add(new Header());
         typeComboBox.setItems(GoalType.values());
 
