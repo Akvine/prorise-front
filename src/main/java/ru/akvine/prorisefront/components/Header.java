@@ -9,10 +9,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
-import ru.akvine.prorisefront.views.main.TasksView;
-import ru.akvine.prorisefront.views.main.ProfileSettingsView;
-import ru.akvine.prorisefront.views.main.ReportsView;
-import ru.akvine.prorisefront.views.main.TimeTrackerView;
+import ru.akvine.prorisefront.views.main.*;
 
 @CssImport(value = "./styles/header.css", themeFor = "vaadin-app-layout")
 public class Header extends AppLayout {
@@ -21,10 +18,11 @@ public class Header extends AppLayout {
     }
 
     public Component buildHeader() {
-        Image logo = new Image("https://via.placeholder.com/150x50?text=Logo", "Logo");
+        Image logo = new Image("https://via.placeholder.com/150x50?text=Logo", "Prorise");
 
         // Список ссылок на страницы
         RouterLink page1Link = new RouterLink("Генерация отчетов", ReportsView.class);
+        RouterLink page5Link = new RouterLink("Расчет показателей", KPIView.class);
         RouterLink page2Link = new RouterLink("Задачи", TasksView.class);
         RouterLink page3Link = new RouterLink("Учет времени", TimeTrackerView.class);
         RouterLink page4Link = new RouterLink("Настройки профиля", ProfileSettingsView.class);
@@ -34,7 +32,7 @@ public class Header extends AppLayout {
         signInButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         // Расположение элементов в header
-        HorizontalLayout headerContent = new HorizontalLayout(logo, page1Link, page2Link, page3Link, page4Link, signInButton);
+        HorizontalLayout headerContent = new HorizontalLayout(logo, page5Link, page1Link, page2Link, page3Link, page4Link, signInButton);
         headerContent.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         headerContent.setWidthFull();
 
