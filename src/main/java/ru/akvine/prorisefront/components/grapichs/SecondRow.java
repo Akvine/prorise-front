@@ -88,24 +88,17 @@ public class SecondRow extends HorizontalLayout {
     }
 
     private Chart createThirdPlot() {
-        Chart chart = new Chart(ChartType.HEATMAP);
-        Configuration configuration = chart.getConfiguration();
-        chart.setWidth("500px");
-        chart.setHeight("500px");
+        Chart chart = new Chart(ChartType.PIE);
+        DataSeries series = new DataSeries();
+        series.add(new DataSeriesItem("Производительность", 35));
+        series.add(new DataSeriesItem("Качество работы", 20));
+        series.add(new DataSeriesItem("Уровень удовлетворенности клиентов", 45));
 
-        DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(0, 0, 10));
-        dataSeries.add(new DataSeriesItem(0, 1, 20));
-        dataSeries.add(new DataSeriesItem(1, 0, 30));
-        dataSeries.add(new DataSeriesItem(1, 1, 40));
+        PlotOptionsPie plotOptions = new PlotOptionsPie();
+        plotOptions.setInnerSize("50%");
+        series.setPlotOptions(plotOptions);
 
-        PlotOptionsHeatmap plotOptions = new PlotOptionsHeatmap();
-        plotOptions.setColsize(0.5);
-        plotOptions.setRowsize(0.5);
-
-        dataSeries.setPlotOptions(plotOptions);
-
-        configuration.setSeries(dataSeries);
+        chart.getConfiguration().addSeries(series);
 
         return chart;
     }
