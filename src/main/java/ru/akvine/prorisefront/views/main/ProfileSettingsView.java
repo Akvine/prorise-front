@@ -16,24 +16,25 @@ public class ProfileSettingsView extends VerticalLayout {
 
     private final User user = getCurrentUser();
 
-    private final TextField firstNameField = new TextField("First Name");
-    private final TextField lastNameField = new TextField("Last Name");
-    private final TextField emailField = new TextField("Email");
-    private final PasswordField passwordField = new PasswordField("Password");
-    private final PasswordField confirmPasswordField = new PasswordField("Confirm Password");
-    private final Checkbox notificationsCheckbox = new Checkbox("Receive notifications");
+    private final TextField firstNameField = new TextField("Имя");
+    private final TextField lastNameField = new TextField("Фамилия");
+    private final TextField emailField = new TextField("Почта");
+    private final PasswordField passwordField = new PasswordField("Пароль");
+    private final PasswordField confirmPasswordField = new PasswordField("Подтвердите пароль");
+    private final Checkbox notificationsCheckbox = new Checkbox("Получить уведомление");
 
     public ProfileSettingsView() {
         add(new Header());
         FormLayout formLayout = new FormLayout();
-        formLayout.addFormItem(firstNameField, "First Name");
-        formLayout.addFormItem(lastNameField, "Last Name");
-        formLayout.addFormItem(emailField, "Email");
-        formLayout.addFormItem(passwordField, "Password");
-        formLayout.addFormItem(confirmPasswordField, "Confirm Password");
-        formLayout.addFormItem(notificationsCheckbox, "Receive notifications");
+        formLayout.addFormItem(firstNameField, "Имя");
+        formLayout.addFormItem(lastNameField, "Фамилия");
+        formLayout.addFormItem(lastNameField, "Отчество");
+        formLayout.addFormItem(emailField, "Почта");
+        formLayout.addFormItem(passwordField, "Пароль");
+        formLayout.addFormItem(confirmPasswordField, "Подтвердите пароль");
+        formLayout.addFormItem(notificationsCheckbox, "Получить уведомление");
 
-        Button saveButton = new Button("Save", e -> saveProfileSettings());
+        Button saveButton = new Button("Сохранить", e -> saveProfileSettings());
 
         add(formLayout, saveButton);
         setAlignItems(Alignment.CENTER);

@@ -49,9 +49,9 @@ public class GoalsView extends VerticalLayout {
     private List<Goal> getGoals() {
         // Здесь необходимо получить список целей из базы данных или другого источника
         return List.of(
-                new Goal("name1", GoalType.DEBIT, LocalDate.now(), LocalDate.now().plusDays(3), GoalStatus.NOT_STARTED),
-                new Goal("name2", GoalType.DEBIT, LocalDate.now(), LocalDate.now().plusDays(2), GoalStatus.NOT_STARTED),
-                new Goal("name3", GoalType.DEBIT, LocalDate.now(), LocalDate.now().plusDays(1), GoalStatus.NOT_STARTED));
+                new Goal("Выполнить задачу по макетам", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(3), GoalStatus.NOT_STARTED),
+                new Goal("Предоставить конфиги", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(7), GoalStatus.NOT_STARTED),
+                new Goal("Дежурство", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(1), GoalStatus.COMPLETED));
     }
 
     private void addGoal() {

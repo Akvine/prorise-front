@@ -21,10 +21,10 @@ public class SecurityView extends VerticalLayout {
     public SecurityView() {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        H1 title = new H1("Welcome to My App");
+        H1 title = new H1("Добро пожаловать в приложение Prorise");
 
-        Button loginButton = new Button("Login");
-        Button registerButton = new Button("Register");
+        Button loginButton = new Button("Авторизоваться");
+        Button registerButton = new Button("Зарегистрироваться");
 
         loginButton.addClickListener(e -> {
             if (isRegistration) {

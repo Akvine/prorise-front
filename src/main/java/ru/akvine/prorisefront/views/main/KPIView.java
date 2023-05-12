@@ -14,12 +14,14 @@ import java.util.List;
 @Route("/kpi")
 public class KPIView extends VerticalLayout {
     private final KPIService kpiService;
-    private final Chart chart;
+    private final Chart diagramm;
+    private final Chart lineChart;
 
     public KPIView(KPIService kpiService) {
         this.kpiService = kpiService;
-        chart = createChart();
-        add(chart, new Header());
+        diagramm = createChart();
+        lineChart = createLineChart();
+        add(diagramm, lineChart, new Header());
 
         updateChartData();
         add(new Footer());
@@ -43,18 +45,41 @@ public class KPIView extends VerticalLayout {
         return chart;
     }
 
+    private Chart createLineChart() {
+        Chart chart = new Chart(ChartType.LINE);
+        Configuration configuration = chart.getConfiguration();
+
+        configuration.setTitle("Линейный график");
+        configuration.setTooltip(new Tooltip());
+
+        DataSeries dataSeries = new DataSeries();
+        dataSeries.add(new DataSeriesItem(0, 5));
+        dataSeries.add(new DataSeriesItem(1, 10));
+        dataSeries.add(new DataSeriesItem(2, 8));
+        dataSeries.add(new DataSeriesItem(3, 12));
+        dataSeries.add(new DataSeriesItem(4, 6));
+
+        configuration.addSeries(dataSeries);
+
+        PlotOptionsLine plotOptions = new PlotOptionsLine();
+        plotOptions.setEnableMouseTracking(true);
+        dataSeries.setPlotOptions(plotOptions);
+
+        return chart;
+    }
+
     private void updateChartData() {
         List<Number> revenueData = List.of(new BigDecimal("15"), new BigDecimal("32"));
         List<Number> profitData = List.of(new BigDecimal("65"), new BigDecimal("72"));
         List<Number> customerCountData = List.of(2, 1);
 
-        ListSeries revenueSeries = new ListSeries("Revenue", revenueData);
-        chart.getConfiguration().addSeries(revenueSeries);
+        ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
+        diagramm.getConfiguration().addSeries(revenueSeries);
 
-        ListSeries profitSeries = new ListSeries("Profit", profitData);
-        chart.getConfiguration().addSeries(profitSeries);
+        ListSeries profitSeries = new ListSeries("Качество работы", profitData);
+        diagramm.getConfiguration().addSeries(profitSeries);
 
-        ListSeries customerCountSeries = new ListSeries("Customer Count", customerCountData);
-        chart.getConfiguration().addSeries(customerCountSeries);
+        ListSeries customerCountSeries = new ListSeries("Сроки выполнения работы", customerCountData);
+        diagramm.getConfiguration().addSeries(customerCountSeries);
     }
 }

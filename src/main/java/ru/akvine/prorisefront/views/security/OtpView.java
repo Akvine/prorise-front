@@ -16,7 +16,7 @@ public class OtpView extends VerticalLayout {
     public OtpView() {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        H1 title = new H1("Enter your OTP");
+        H1 title = new H1("Введите 4-х значный код");
 
         for (int i = 0; i < 4; i++) {
             otpFields[i] = new TextField();
