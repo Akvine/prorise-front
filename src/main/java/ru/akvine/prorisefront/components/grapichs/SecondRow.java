@@ -4,6 +4,8 @@ import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
+import java.util.List;
+
 public class SecondRow extends HorizontalLayout {
     public SecondRow() {
         Chart firstPlot = createFirstPlot();
@@ -28,18 +30,29 @@ public class SecondRow extends HorizontalLayout {
 
         configuration.setTooltip(new Tooltip());
 
-        DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(0, 5));
-        dataSeries.add(new DataSeriesItem(1, 10));
-        dataSeries.add(new DataSeriesItem(2, 8));
-        dataSeries.add(new DataSeriesItem(3, 12));
-        dataSeries.add(new DataSeriesItem(4, 6));
+        List<Number> revenueData = List.of(1, 2, 4);
+        List<Number> profitData = List.of(9, 1, 18);
+        List<Number> customerCountData = List.of(4, 1, 4);
 
-        configuration.addSeries(dataSeries);
+        ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
+        chart.getConfiguration().addSeries(revenueSeries);
+        chart.getConfiguration().getChart().setColorCount(3);
+
+        ListSeries profitSeries = new ListSeries("Качество работы", profitData);
+        chart.getConfiguration().addSeries(profitSeries);
+        chart.getConfiguration().getChart().setColorCount(2);
+
+        ListSeries customerCountSeries = new ListSeries("Уровень удовлетворённости клиентов", customerCountData);
+        chart.getConfiguration().addSeries(customerCountSeries);
+        chart.getConfiguration().getChart().setColorCount(1);
+
 
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setEnableMouseTracking(true);
-        dataSeries.setPlotOptions(plotOptions);
+
+        revenueSeries.setPlotOptions(plotOptions);
+        profitSeries.setPlotOptions(plotOptions);
+        customerCountSeries.setPlotOptions(plotOptions);
 
         return chart;
     }
