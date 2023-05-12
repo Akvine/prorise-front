@@ -4,8 +4,8 @@ import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-public class LinePlots extends HorizontalLayout {
-    public LinePlots() {
+public class SecondRow extends HorizontalLayout {
+    public SecondRow() {
         Chart firstPlot = createFirstPlot();
         Chart secondPlot = createSecondPlot();
         Chart thirdPlot = createThirdPlot();

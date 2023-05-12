@@ -2,26 +2,24 @@ package ru.akvine.prorisefront.components.grapichs;
 
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
-import com.vaadin.flow.component.charts.model.style.Color;
-import com.vaadin.flow.component.charts.model.style.GradientColor;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Charts extends HorizontalLayout {
-    private final Chart firstChart;
+public class FirstRow extends HorizontalLayout {
+    private final Chart columnChart;
     private final Chart secondChart;
     private final Chart thirdChart;
 
-    public Charts() {
-        firstChart = createFirstChart();
-        secondChart = createSecondChart();
+    public FirstRow() {
+        columnChart = createColumnChart();
+        secondChart = createAreaChart();
         thirdChart = createThirdChart();
-        add(firstChart, secondChart, thirdChart);
+        add(columnChart, secondChart, thirdChart);
     }
 
-    private Chart createFirstChart() {
+    private Chart createColumnChart() {
         Chart chart = new Chart(ChartType.COLUMN);
         Configuration conf = chart.getConfiguration();
         chart.setWidth("500px");
@@ -36,10 +34,26 @@ public class Charts extends HorizontalLayout {
         yAxis.setTitle("Значение");
         conf.addyAxis(yAxis);
 
+        List<Number> revenueData = List.of(new BigDecimal("15"));
+        List<Number> profitData = List.of(new BigDecimal("65"));
+        List<Number> customerCountData = List.of(2);
+
+        ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
+        chart.getConfiguration().addSeries(revenueSeries);
+        chart.getConfiguration().getChart().setColorCount(3);
+
+        ListSeries profitSeries = new ListSeries("Качество работы", profitData);
+        chart.getConfiguration().addSeries(profitSeries);
+        chart.getConfiguration().getChart().setColorCount(2);
+
+        ListSeries customerCountSeries = new ListSeries("Уровень удовлетворённости клиентов", customerCountData);
+        chart.getConfiguration().addSeries(customerCountSeries);
+        chart.getConfiguration().getChart().setColorCount(1);
+
         return chart;
     }
 
-    private Chart createSecondChart() {
+    private Chart createAreaChart() {
         Chart chart = new Chart(ChartType.AREA);
         Configuration configuration = chart.getConfiguration();
         chart.setWidth("500px");
@@ -83,8 +97,8 @@ public class Charts extends HorizontalLayout {
         List<Number> customerCountData = List.of(2);
 
         ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
-        firstChart.getConfiguration().addSeries(revenueSeries);
-        firstChart.getConfiguration().getChart().setColorCount(3);
+        columnChart.getConfiguration().addSeries(revenueSeries);
+        columnChart.getConfiguration().getChart().setColorCount(3);
 
         ListSeries profitSeries = new ListSeries("Качество работы", profitData);
         secondChart.getConfiguration().addSeries(profitSeries);

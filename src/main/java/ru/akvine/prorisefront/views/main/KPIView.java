@@ -5,8 +5,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import ru.akvine.prorisefront.components.FilterBox;
 import ru.akvine.prorisefront.components.Header;
-import ru.akvine.prorisefront.components.grapichs.Charts;
-import ru.akvine.prorisefront.components.grapichs.LinePlots;
+import ru.akvine.prorisefront.components.grapichs.FirstRow;
+import ru.akvine.prorisefront.components.grapichs.SecondRow;
 import ru.akvine.prorisefront.services.KPIService;
 
 @Route("/kpi")
@@ -19,13 +19,13 @@ public class KPIView extends VerticalLayout {
         this.kpiService = kpiService;
         this.comboBox = new ComboBox<>();
 
-        Charts charts = new Charts();
-        charts.updateChartData();
-        LinePlots linePlots = new LinePlots();
+        FirstRow firstRow = new FirstRow();
+        firstRow.updateChartData();
+        SecondRow secondRow = new SecondRow();
 
         FilterBox filterBox = new FilterBox();
 
-        add(charts, linePlots);
+        add(firstRow, secondRow);
         add(filterBox);
     }
 }
