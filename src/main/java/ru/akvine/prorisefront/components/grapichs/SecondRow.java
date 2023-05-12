@@ -46,7 +46,6 @@ public class SecondRow extends HorizontalLayout {
         chart.getConfiguration().addSeries(customerCountSeries);
         chart.getConfiguration().getChart().setColorCount(1);
 
-
         PlotOptionsLine plotOptions = new PlotOptionsLine();
         plotOptions.setEnableMouseTracking(true);
 
@@ -58,23 +57,32 @@ public class SecondRow extends HorizontalLayout {
     }
 
     private Chart createSecondPlot() {
-        Chart chart = new Chart(ChartType.BUBBLE);
+        Chart chart = new Chart(ChartType.WATERFALL);
         Configuration configuration = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
 
-        DataSeries dataSeries = new DataSeries();
-        dataSeries.add(new DataSeriesItem(1, 1, 10));
-        dataSeries.add(new DataSeriesItem(2, 2, 20));
-        dataSeries.add(new DataSeriesItem(3, 3, 30));
+        List<Number> revenueData = List.of(1, 2, 4);
+        List<Number> profitData = List.of(9, 1, 18);
+        List<Number> customerCountData = List.of(4, 1, 4);
 
-        PlotOptionsBubble plotOptions = new PlotOptionsBubble();
-        plotOptions.setMinSize("10");
-        plotOptions.setMaxSize("30");
+        ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
+        chart.getConfiguration().addSeries(revenueSeries);
+        chart.getConfiguration().getChart().setColorCount(3);
 
-        dataSeries.setPlotOptions(plotOptions);
+        ListSeries profitSeries = new ListSeries("Качество работы", profitData);
+        chart.getConfiguration().addSeries(profitSeries);
+        chart.getConfiguration().getChart().setColorCount(2);
 
-        configuration.setSeries(dataSeries);
+        ListSeries customerCountSeries = new ListSeries("Уровень удовлетворённости клиентов", customerCountData);
+        chart.getConfiguration().addSeries(customerCountSeries);
+        chart.getConfiguration().getChart().setColorCount(1);
+
+        PlotOptionsWaterfall plotOptions = new PlotOptionsWaterfall();
+
+        revenueSeries.setPlotOptions(plotOptions);
+        profitSeries.setPlotOptions(plotOptions);
+        customerCountSeries.setPlotOptions(plotOptions);
 
         return chart;
     }
