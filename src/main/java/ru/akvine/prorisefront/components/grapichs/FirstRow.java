@@ -5,6 +5,7 @@ import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 public class FirstRow extends HorizontalLayout {
@@ -82,11 +83,10 @@ public class FirstRow extends HorizontalLayout {
     }
 
     private Chart createThirdChart() {
-        Chart chart = new Chart(ChartType.BOXPLOT);
+        Chart chart = new Chart(ChartType.BUBBLE);
         Configuration conf = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
-        conf.setTitle("Уровень удовлетворённости клиентов");
 
         XAxis xAxis = new XAxis();
         xAxis.setTitle("Время");
@@ -96,24 +96,27 @@ public class FirstRow extends HorizontalLayout {
         yAxis.setTitle("Значение");
         conf.addyAxis(yAxis);
 
-        return chart;
-    }
-
-    public void updateChartData() {
-        List<Number> revenueData = List.of(new BigDecimal("15"));
-        List<Number> profitData = List.of(new BigDecimal("65"));
-        List<Number> customerCountData = List.of(2);
+        List<Number> revenueData = List.of(1, 2, 4);
+        List<Number> profitData = List.of(9, 1, 18);
+        List<Number> customerCountData = List.of(4, 1, 4);
 
         ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
-        columnChart.getConfiguration().addSeries(revenueSeries);
-        columnChart.getConfiguration().getChart().setColorCount(3);
+        chart.getConfiguration().addSeries(revenueSeries);
+        chart.getConfiguration().getChart().setColorCount(3);
 
         ListSeries profitSeries = new ListSeries("Качество работы", profitData);
-        secondChart.getConfiguration().addSeries(profitSeries);
-        secondChart.getConfiguration().getChart().setColorCount(2);
+        chart.getConfiguration().addSeries(profitSeries);
+        chart.getConfiguration().getChart().setColorCount(2);
 
         ListSeries customerCountSeries = new ListSeries("Уровень удовлетворённости клиентов", customerCountData);
-        thirdChart.getConfiguration().addSeries(customerCountSeries);
-        thirdChart.getConfiguration().getChart().setColorCount(1);
+        chart.getConfiguration().addSeries(customerCountSeries);
+        chart.getConfiguration().getChart().setColorCount(1);
+
+        PlotOptionsBubble plotOptions = new PlotOptionsBubble();
+        revenueSeries.setPlotOptions(plotOptions);
+        profitSeries.setPlotOptions(plotOptions);
+        customerCountSeries.setPlotOptions(plotOptions);
+
+        return chart;
     }
 }

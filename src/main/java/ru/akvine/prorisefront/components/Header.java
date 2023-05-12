@@ -30,7 +30,7 @@ public class Header extends AppLayout {
         RouterLink page4Link = new RouterLink("Настройки профиля", ProfileSettingsView.class);
 
         // Кнопка "Sign In"
-        Button signInButton = new Button("Войти");
+        Button signInButton = new Button("Выйти");
         signInButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         // Расположение элементов в header

@@ -20,7 +20,6 @@ public class KPIView extends VerticalLayout {
         this.comboBox = new ComboBox<>();
 
         FirstRow firstRow = new FirstRow();
-        firstRow.updateChartData();
         SecondRow secondRow = new SecondRow();
 
         FilterBox filterBox = new FilterBox();
