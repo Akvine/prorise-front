@@ -94,6 +94,9 @@ public class SecondRow extends HorizontalLayout {
         series.add(new DataSeriesItem("Качество работы", 20));
         series.add(new DataSeriesItem("Уровень удовлетворенности клиентов", 45));
 
+        chart.setWidth("500px");
+        chart.setHeight("500px");
+
         PlotOptionsPie plotOptions = new PlotOptionsPie();
         plotOptions.setInnerSize("50%");
         series.setPlotOptions(plotOptions);

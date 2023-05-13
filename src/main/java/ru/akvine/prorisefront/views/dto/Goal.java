@@ -12,7 +12,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Goal {
-    private String name;
+    private String employerName;
+    private String teamName;
+    private String projectName;
+    private String departmentName;
+    private String title;
     private GoalType type;
     private LocalDate startDate;
     private LocalDate endDate;

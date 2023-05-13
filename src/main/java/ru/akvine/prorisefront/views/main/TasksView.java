@@ -19,20 +19,24 @@ import java.util.List;
 @Route("/goals")
 public class TasksView extends VerticalLayout {
     private final Grid<Goal> grid = new Grid<>(Goal.class);
-    private final TextField nameField = new TextField("Название");
+    private final TextField titleField = new TextField("Название задачи");
+    private final TextField employerField = new TextField("ФИО Сотрудника");
+    private final TextField teamField = new TextField("Команда");
+    private final TextField projectField = new TextField("Проект");
+    private final TextField departmentField = new TextField("Департамент");
     private final ComboBox<GoalType> typeComboBox = new ComboBox<>("Тип цели");
     private final DatePicker startDatePicker = new DatePicker("Дата начала");
     private final DatePicker endDatePicker = new DatePicker("Дата окончания");
     private final Button addButton = new Button("Добавить");
     private final Button updateButton = new Button("Обновить");
     private final Button deleteButton = new Button("Удалить");
-    private final HorizontalLayout formLayout = new HorizontalLayout(nameField, typeComboBox, startDatePicker, endDatePicker, addButton, updateButton, deleteButton);
+    private final HorizontalLayout formLayout = new HorizontalLayout(employerField, teamField, projectField, departmentField, titleField, typeComboBox, startDatePicker, endDatePicker, addButton, updateButton, deleteButton);
 
     public TasksView() {
         add(new Header());
         typeComboBox.setItems(GoalType.values());
 
-        grid.setColumns("name", "type", "startDate", "endDate", "goalStatus");
+        grid.setColumns("employerName", "teamName", "projectName", "departmentName", "title", "type", "startDate", "endDate", "goalStatus");
         grid.setItems(getGoals());
 
         addButton.addClickListener(e -> addGoal());
@@ -47,14 +51,18 @@ public class TasksView extends VerticalLayout {
     private List<Goal> getGoals() {
         // Здесь необходимо получить список целей из базы данных или другого источника
         return List.of(
-                new Goal("Выполнить задачу по макетам", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(3), GoalStatus.NOT_STARTED),
-                new Goal("Предоставить конфиги", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(7), GoalStatus.NOT_STARTED),
-                new Goal("Дежурство", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(1), GoalStatus.COMPLETED));
+                new Goal("Самуров Олег А.", "Сбор Чаевых", "Команда разработки", "Департамент внедрения", "Выполнить задачу по макетам", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(3), GoalStatus.NOT_STARTED),
+                new Goal("Камойлова Анна В.", "Замеры горных пород", "Команда сопровождения", "Департамент внедрения", "Предоставить конфиги", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(7), GoalStatus.STARTER),
+                new Goal("Жуков Сергей Л.", "Выдача кредитов", "Команда разбора инцидентов", "Департамент безопасности", "Дежурство", GoalType.NEW, LocalDate.now(), LocalDate.now().plusDays(1), GoalStatus.COMPLETED));
     }
 
     private void addGoal() {
         Goal goal = new Goal();
-        goal.setName(nameField.getValue());
+        goal.setTitle(titleField.getValue());
+        goal.setEmployerName(employerField.getValue());
+        goal.setProjectName(projectField.getValue());
+        goal.setTeamName(teamField.getValue());
+        goal.setDepartmentName(departmentField.getValue());
         goal.setType(typeComboBox.getValue());
         goal.setStartDate(startDatePicker.getValue());
         goal.setEndDate(endDatePicker.getValue());
@@ -68,7 +76,11 @@ public class TasksView extends VerticalLayout {
     private void updateGoal() {
         Goal selectedGoal = grid.asSingleSelect().getValue();
         if (selectedGoal != null) {
-            selectedGoal.setName(nameField.getValue());
+            selectedGoal.setTitle(titleField.getValue());
+            selectedGoal.setEmployerName(employerField.getValue());
+            selectedGoal.setTeamName(teamField.getValue());
+            selectedGoal.setProjectName(projectField.getValue());
+            selectedGoal.setDepartmentName(departmentField.getValue());
             selectedGoal.setType(typeComboBox.getValue());
             selectedGoal.setStartDate(startDatePicker.getValue());
             selectedGoal.setEndDate(endDatePicker.getValue());

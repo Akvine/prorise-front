@@ -18,7 +18,7 @@ public class Header extends AppLayout {
     }
 
     public Component buildHeader() {
-        Image logo = new Image("https://via.placeholder.com/150x50?text=Logo", "Prorise");
+        Image logo = new Image("https://via.placeholder.com/150x50?text=Prorise", "Prorise");
 
         // Список ссылок на страницы
         RouterLink page1Link = new RouterLink("Генерация отчетов", ReportsView.class);
