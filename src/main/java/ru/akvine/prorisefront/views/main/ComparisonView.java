@@ -4,6 +4,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import ru.akvine.prorisefront.components.Header;
 import ru.akvine.prorisefront.views.dto.Department;
 import ru.akvine.prorisefront.views.dto.Employee;
 import ru.akvine.prorisefront.views.dto.Project;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ComparisonView extends Div {
 
     public ComparisonView() {
+        add(new Header());
         // Создание компонентов
         Grid<Department> departmentGrid = createDepartmentGrid();
         Grid<Team> teamGrid = createTeamGrid();
@@ -65,33 +67,33 @@ public class ComparisonView extends Div {
     // Заглушки для данных (примеры)
     private List<Department> getDepartments() {
         return Arrays.asList(
-                new Department("HR", 10, 80),
+                new Department("Найм", 10, 80),
                 new Department("IT", 50, 90),
-                new Department("Sales", 20, 75)
+                new Department("Продажи", 20, 75)
         );
     }
 
     private List<Team> getTeams() {
         return Arrays.asList(
-                new Team("Development", "IT", 30, 85),
-                new Team("Marketing", "Sales", 15, 70),
-                new Team("Recruitment", "HR", 5, 80)
+                new Team("Разработка", "IT", 30, 85),
+                new Team("Маркетинг", "Продажи", 15, 70),
+                new Team("Найм", "Найм", 5, 80)
         );
     }
 
     private List<Project> getProjects() {
         return Arrays.asList(
-                new Project("Website Redesign", "Development", "In Progress", "2023-06-30"),
-                new Project("Product Launch", "Marketing", "Completed", "2023-04-15"),
-                new Project("Talent Acquisition Campaign", "Recruitment", "Planned", "2023-07-15")
+                new Project("Дизайн вебсайтов", "Разработка", "In_PROGRESS", "2023-06-30"),
+                new Project("Запуск продуктов", "Маркетинг", "COMPLETED", "2023-04-15"),
+                new Project("Сопровождение", "Найм", "COMPLETED", "2023-07-15")
         );
     }
 
     private List<Employee> getEmployees() {
         return Arrays.asList(
-                new Employee("John Smith", "IT", "Development", "Software Engineer", 90),
-                new Employee("Emily Johnson", "Sales", "Marketing", "Marketing Specialist", 75),
-                new Employee("Sarah Davis", "HR", "Recruitment", "HR Manager", 80)
+                new Employee("Семёнов Александр А.", "IT", "Разработка", "Разработчик", 90),
+                new Employee("Капитал Антон М.", "Sales", "Marketing", "Маркетолог", 75),
+                new Employee("Провеник Андрей С.", "HR", "Recruitment", "HR Manager", 80)
         );
     }
 }
