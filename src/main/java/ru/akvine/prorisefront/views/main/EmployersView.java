@@ -75,7 +75,19 @@ public class EmployersView extends VerticalLayout {
 
     private void filterEmployees(String filterText) {
         ListDataProvider<Employee> dataProvider = new ListDataProvider<>(employees);
-        dataProvider.setFilter(employee -> employee.getName().toLowerCase().contains(filterText.toLowerCase()));
+        dataProvider.setFilter(employee -> {
+                    String lowerFilterText = filterText.toLowerCase();
+                    String name = employee.getName().toLowerCase();
+                    String department = employee.getDepartment().toLowerCase();
+                    String team = employee.getTeam().toLowerCase();
+                    String project = employee.getProject().toLowerCase();
+
+                    return name.contains(lowerFilterText)
+                            || department.contains(lowerFilterText)
+                            || team.contains(lowerFilterText)
+                            || project.contains(lowerFilterText);
+                }
+        );
         employeeGrid.setDataProvider(dataProvider);
     }
 
