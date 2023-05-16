@@ -55,8 +55,17 @@ public class FirstRow extends HorizontalLayout {
 
     private Chart createAreaChart() {
         Chart chart = new Chart(ChartType.AREA);
+        Configuration conf = chart.getConfiguration();
         chart.setWidth("500px");
         chart.setHeight("500px");
+
+        XAxis xAxis = new XAxis();
+        xAxis.setTitle("Время");
+        conf.addxAxis(xAxis);
+
+        YAxis yAxis = new YAxis();
+        yAxis.setTitle("Значение");
+        conf.addyAxis(yAxis);
 
         List<Number> revenueData = List.of(1, 2, 4);
         List<Number> profitData = List.of(9, 1, 18);

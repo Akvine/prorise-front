@@ -21,9 +21,9 @@ public class Header extends AppLayout {
         Image logo = new Image("https://via.placeholder.com/150x50?text=Prorise", "Prorise");
 
         // Список ссылок на страницы
-        RouterLink page1Link = new RouterLink("Генерация отчетов", ReportsView.class);
-        RouterLink page5Link = new RouterLink("Расчет показателей", KPIView.class);
-        RouterLink page2Link = new RouterLink("Задачи", TasksView.class);
+        RouterLink page1Link = new RouterLink("Показатели", KPIView.class);
+        RouterLink page5Link = new RouterLink("Сотрудники", KPIView.class);
+        RouterLink page2Link = new RouterLink("Задачи", EmployersView.class);
         RouterLink page3Link = new RouterLink("Учет времени", TimeTrackerView.class);
         RouterLink page4Link = new RouterLink("Настройки профиля", ProfileSettingsView.class);
 

@@ -30,9 +30,9 @@ public class SecondRow extends HorizontalLayout {
 
         configuration.setTooltip(new Tooltip());
 
-        List<Number> revenueData = List.of(1, 2, 4);
-        List<Number> profitData = List.of(9, 1, 18);
-        List<Number> customerCountData = List.of(4, 1, 4);
+        List<Number> revenueData = List.of(49, 74, 44);
+        List<Number> profitData = List.of(52, 48, 62);
+        List<Number> customerCountData = List.of(19, 4, 2);
 
         ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
         chart.getConfiguration().addSeries(revenueSeries);
@@ -62,9 +62,17 @@ public class SecondRow extends HorizontalLayout {
         chart.setWidth("500px");
         chart.setHeight("500px");
 
-        List<Number> revenueData = List.of(1, 2, 4);
-        List<Number> profitData = List.of(9, 1, 18);
-        List<Number> customerCountData = List.of(4, 1, 4);
+        XAxis xAxis = new XAxis();
+        xAxis.setTitle("Время");
+        configuration.addxAxis(xAxis);
+
+        YAxis yAxis = new YAxis();
+        yAxis.setTitle("Значение");
+        configuration.addyAxis(yAxis);
+
+        List<Number> revenueData = List.of(49, 74, 44);
+        List<Number> profitData = List.of(52, 48, 62);
+        List<Number> customerCountData = List.of(19, 4, 2);
 
         ListSeries revenueSeries = new ListSeries("Производительность", revenueData);
         chart.getConfiguration().addSeries(revenueSeries);
@@ -89,10 +97,19 @@ public class SecondRow extends HorizontalLayout {
 
     private Chart createThirdPlot() {
         Chart chart = new Chart(ChartType.PIE);
+        Configuration configuration = chart.getConfiguration();
         DataSeries series = new DataSeries();
         series.add(new DataSeriesItem("Производительность", 35));
         series.add(new DataSeriesItem("Качество работы", 20));
         series.add(new DataSeriesItem("Уровень удовлетворенности клиентов", 45));
+
+        XAxis xAxis = new XAxis();
+        xAxis.setTitle("Время");
+        configuration.addxAxis(xAxis);
+
+        YAxis yAxis = new YAxis();
+        yAxis.setTitle("Значение");
+        configuration.addyAxis(yAxis);
 
         chart.setWidth("500px");
         chart.setHeight("500px");
