@@ -1,6 +1,5 @@
 package ru.akvine.prorisefront.views.main;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -20,7 +19,6 @@ public class EmployersView extends VerticalLayout {
     private Grid<Task> taskGrid;
     private TextField filterField;
     private TextField taskFilterField;
-    private Button taskFilterButton;
 
     private List<Employee> employees;
     private List<Task> tasks;
@@ -44,8 +42,6 @@ public class EmployersView extends VerticalLayout {
         // Создание компонентов фильтрации для задач
         taskFilterField = new TextField("Фильтр по задачам");
         taskFilterField.addValueChangeListener(e -> filterTasks(e.getValue()));
-        taskFilterButton = new Button("Применить фильтр");
-        taskFilterButton.addClickListener(e -> filterTasks(taskFilterField.getValue()));
 
         // Создание компонента списка задач
         taskGrid = new Grid<>(Task.class);
@@ -53,7 +49,7 @@ public class EmployersView extends VerticalLayout {
         taskGrid.setItems(tasks);
 
         // Добавление компонентов на страницу
-        add(filterField, employeeGrid, taskFilterField, taskFilterButton, taskGrid);
+        add(filterField, employeeGrid, taskFilterField, taskGrid);
     }
 
     private List<Employee> createEmployeeData() {
