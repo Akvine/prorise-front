@@ -24,7 +24,6 @@ public class EmployersView extends VerticalLayout {
     public EmployersView() {
         add(new Header());
         employees = createEmployeeData();
-        List<Task> tasks = createTaskData();
 
         // Создание компонента фильтрации
         filterField = new TextField("Фильтр");
@@ -40,14 +39,9 @@ public class EmployersView extends VerticalLayout {
         // Создание компонента списка задач
         taskGrid = new Grid<>(Task.class);
         taskGrid.setColumns("id", "name", "status");
-        taskGrid.setItems(tasks);
-
-        // Кнопка для сброса фильтра
-        Button clearFilterButton = new Button("Сбросить фильтр");
-        clearFilterButton.addClickListener(e -> clearFilter());
 
         // Добавление компонентов на страницу
-        add(filterField, employeeGrid, taskGrid, clearFilterButton);
+        add(filterField, employeeGrid, taskGrid);
     }
 
     private List<Employee> createEmployeeData() {
@@ -60,13 +54,22 @@ public class EmployersView extends VerticalLayout {
         return employees;
     }
 
-    private List<Task> createTaskData() {
-        // Здесь вы можете добавить вашу логику для получения данных о задачах из базы данных или другого источника
+    private List<Task> getTasksForEmployee(Employee employee) {
+        // Здесь вы можете добавить вашу логику для получения задач, связанных с данным сотрудником
+        // Например, обращение к базе данных или другому источнику данных
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task(1, "Задача 1", "В процессе"));
-        tasks.add(new Task(2, "Задача 2", "Завершена"));
-        tasks.add(new Task(3, "Задача 3", "В процессе"));
-        tasks.add(new Task(4, "Задача 4", "Отложена"));
+        // В предположении, что в объекте Employee есть идентификатор сотрудника,
+        // можно получить задачи, связанные с этим сотрудником или другими параметрами
+        // tasks = yourTaskService.getTasksByEmployee(employee.getId());
+        if (employee.getId() == 1) {
+            tasks = new ArrayList<>();
+            tasks.add(new Task(1, "Задача 1", "В процессе"));
+            tasks.add(new Task(2, "Задача 2", "Завершена"));
+        } else {
+            tasks = new ArrayList<>();
+            tasks.add(new Task(3, "Задача 3", "В процессе"));
+            tasks.add(new Task(4, "Задача 4", "Отложена"));
+        }
         return tasks;
     }
 
@@ -83,20 +86,5 @@ public class EmployersView extends VerticalLayout {
         } else {
             taskGrid.setItems();
         }
-    }
-
-    private List<Task> getTasksForEmployee(Employee employee) {
-        // Здесь вы можете добавить вашу логику для получения задач, связанных с данным сотрудником
-        // Например, обращение к базе данных или другому источнику данных
-        List<Task> tasks = new ArrayList<>();
-        // В предположении, что в объекте Employee есть идентификатор проекта,
-        // можно получить задачи, связанные с этим проектом или другими параметрами
-        // tasks = yourTaskService.getTasksByEmployee(employee.getId());
-        return tasks;
-    }
-
-    private void clearFilter() {
-        filterField.clear();
-        employeeGrid.setItems(employees);
     }
 }
