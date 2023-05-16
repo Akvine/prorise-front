@@ -29,7 +29,7 @@ public class TimeTrackerView extends VerticalLayout {
         add(new Header());
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        H1 title = new H1("Time Tracker");
+        H1 title = new H1("Трекинг времени");
 
         sectionComboBox.setItems("Design", "Development", "Testing", "Documentation");
         sectionComboBox.addValueChangeListener(e -> {
