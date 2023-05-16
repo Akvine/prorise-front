@@ -12,21 +12,26 @@ import ru.akvine.prorisefront.services.dto.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Route("/employers")
 public class EmployersView extends VerticalLayout {
     private Grid<Employee> employeeGrid;
     private Grid<Task> taskGrid;
     private TextField filterField;
+    private TextField taskFilterField;
+    private Button taskFilterButton;
 
     private List<Employee> employees;
+    private List<Task> tasks;
 
     public EmployersView() {
         add(new Header());
         employees = createEmployeeData();
+        tasks = createTaskData();
 
-        // Создание компонента фильтрации
-        filterField = new TextField("Фильтр");
+        // Создание компонента фильтрации для сотрудников
+        filterField = new TextField("Фильтр по сотрудникам");
         filterField.addValueChangeListener(e -> filterEmployees(e.getValue()));
 
         // Создание компонента списка сотрудников
@@ -36,12 +41,19 @@ public class EmployersView extends VerticalLayout {
         employeeGrid.setItems(employees);
         employeeGrid.asSingleSelect().addValueChangeListener(e -> showTasksForEmployee(e.getValue()));
 
+        // Создание компонентов фильтрации для задач
+        taskFilterField = new TextField("Фильтр по задачам");
+        taskFilterField.addValueChangeListener(e -> filterTasks(e.getValue()));
+        taskFilterButton = new Button("Применить фильтр");
+        taskFilterButton.addClickListener(e -> filterTasks(taskFilterField.getValue()));
+
         // Создание компонента списка задач
         taskGrid = new Grid<>(Task.class);
         taskGrid.setColumns("id", "name", "status");
+        taskGrid.setItems(tasks);
 
         // Добавление компонентов на страницу
-        add(filterField, employeeGrid, taskGrid);
+        add(filterField, employeeGrid, taskFilterField, taskFilterButton, taskGrid);
     }
 
     private List<Employee> createEmployeeData() {
@@ -54,13 +66,20 @@ public class EmployersView extends VerticalLayout {
         return employees;
     }
 
+    private List<Task> createTaskData() {
+        // Здесь вы можете добавить вашу логику
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(1, "Задача 1", "В процессе"));
+        tasks.add(new Task(2, "Задача 2", "Завершена"));
+        tasks.add(new Task(3, "Задача 3", "В процессе"));
+        tasks.add(new Task(4, "Задача 4", "Отложена"));
+        return tasks;
+    }
+
     private List<Task> getTasksForEmployee(Employee employee) {
         // Здесь вы можете добавить вашу логику для получения задач, связанных с данным сотрудником
         // Например, обращение к базе данных или другому источнику данных
-        List<Task> tasks = new ArrayList<>();
-        // В предположении, что в объекте Employee есть идентификатор сотрудника,
-        // можно получить задачи, связанные с этим сотрудником или другими параметрами
-        // tasks = yourTaskService.getTasksByEmployee(employee.getId());
+        List<Task> tasks;
         if (employee.getId() == 1) {
             tasks = new ArrayList<>();
             tasks.add(new Task(1, "Задача 1", "В процессе"));
@@ -75,20 +94,15 @@ public class EmployersView extends VerticalLayout {
 
     private void filterEmployees(String filterText) {
         ListDataProvider<Employee> dataProvider = new ListDataProvider<>(employees);
-        dataProvider.setFilter(employee -> {
-                    String lowerFilterText = filterText.toLowerCase();
-                    String name = employee.getName().toLowerCase();
-                    String department = employee.getDepartment().toLowerCase();
-                    String team = employee.getTeam().toLowerCase();
-                    String project = employee.getProject().toLowerCase();
-
-                    return name.contains(lowerFilterText)
-                            || department.contains(lowerFilterText)
-                            || team.contains(lowerFilterText)
-                            || project.contains(lowerFilterText);
-                }
-        );
+        dataProvider.setFilter(employee -> employee.getName().toLowerCase().contains(filterText.toLowerCase()));
         employeeGrid.setDataProvider(dataProvider);
+    }
+
+    private void filterTasks(String filterText) {
+        List<Task> filteredTasks = tasks.stream()
+                .filter(task -> task.getName().toLowerCase().contains(filterText.toLowerCase()))
+                .collect(Collectors.toList());
+        taskGrid.setItems(filteredTasks);
     }
 
     private void showTasksForEmployee(Employee employee) {
