@@ -1,118 +1,55 @@
 package ru.akvine.prorisefront.views.main;
 
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import ru.akvine.prorisefront.components.Header;
+import ru.akvine.prorisefront.services.dto.EmployeeWithTime;
 
-import java.time.Duration;
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Route("time-tracker")
 public class TimeTrackerView extends VerticalLayout {
-
-    private Map<String, LocalTime> timeMap = new HashMap<>();
-    private Label sectionLabel = new Label("Select a section to start tracking time: ");
-    private ComboBox<String> sectionComboBox = new ComboBox<>();
-    private Button startButton = new Button("Start");
-    private Button stopButton = new Button("Stop");
-    private Grid<SectionTime> timeGrid = new Grid<>(SectionTime.class);
+    private Grid<EmployeeWithTime> employeeGrid;
+    private List<EmployeeWithTime> employees;
+    private DatePicker datePicker;
 
     public TimeTrackerView() {
         add(new Header());
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        employees = createEmployeeData();
 
-        H1 title = new H1("Трекинг времени");
+        // Создание компонента выбора даты
+        datePicker = new DatePicker("Выберите дату");
+        datePicker.addValueChangeListener(e -> showEmployeesByDate(e.getValue()));
 
-        sectionComboBox.setItems("Design", "Development", "Testing", "Documentation");
-        sectionComboBox.addValueChangeListener(e -> {
-            if (timeMap.containsKey(e.getValue())) {
-                LocalTime time = timeMap.get(e.getValue());
-                String formattedTime = formatTime(time);
-                timeGrid.setItems(new SectionTime(e.getValue(), formattedTime));
-            } else {
-                timeGrid.setItems(new SectionTime(e.getValue(), "00:00:00"));
-            }
-        });
+        // Создание компонента списка сотрудников
+        employeeGrid = new Grid<>(EmployeeWithTime.class);
+        employeeGrid.setColumns("firstName", "lastName", "arrivalTime", "departureTime");
+        employeeGrid.setItems(employees);
 
-        startButton.addClickListener(e -> {
-            String section = sectionComboBox.getValue();
-            if (section != null) {
-                timeMap.put(section, LocalTime.now());
-                startButton.setEnabled(false);
-                stopButton.setEnabled(true);
-            }
-        });
-        startButton.setEnabled(false);
-
-        stopButton.addClickListener(e -> {
-            String section = sectionComboBox.getValue();
-            if (section != null) {
-                LocalTime startTime = timeMap.get(section);
-                LocalTime endTime = LocalTime.now();
-                Duration duration = Duration.between(startTime, endTime);
-                String formattedTime = formatDuration(duration);
-                timeMap.put(section, endTime);
-                timeGrid.setItems(new SectionTime(section, formattedTime));
-                startButton.setEnabled(true);
-                stopButton.setEnabled(false);
-            }
-        });
-        stopButton.setEnabled(false);
-
-        HorizontalLayout sectionLayout = new HorizontalLayout(sectionLabel, sectionComboBox);
-        sectionLayout.setSpacing(true);
-
-        HorizontalLayout buttonLayout = new HorizontalLayout(startButton, stopButton);
-        buttonLayout.setSpacing(true);
-
-        timeGrid.setColumns("section", "time");
-        timeGrid.setSizeFull();
-
-        add(title, sectionLayout, buttonLayout, timeGrid);
+        // Добавление компонентов на страницу
+        add(datePicker, employeeGrid);
     }
 
-    private String formatDuration(Duration duration) {
-        long hours = duration.toHours();
-        long minutes = duration.toMinutes() % 60;
-        long seconds = duration.getSeconds() % 60;
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    private List<EmployeeWithTime> createEmployeeData() {
+        // Здесь вы можете добавить вашу логику для получения данных о сотрудниках из базы данных или другого источника
+        List<EmployeeWithTime> employees = new ArrayList<>();
+        employees.add(new EmployeeWithTime("Иван", "Петров", LocalDateTime.of(2023, 5, 17, 9, 0), LocalDateTime.of(2023, 5, 17, 18, 0)));
+        employees.add(new EmployeeWithTime("Анна", "Иванова", LocalDateTime.of(2023, 5, 17, 8, 30), LocalDateTime.of(2023, 5, 17, 17, 30)));
+        employees.add(new EmployeeWithTime("Петр", "Сидоров", LocalDateTime.of(2023, 5, 17, 9, 15), LocalDateTime.of(2023, 5, 17, 18, 15)));
+        return employees;
     }
 
-    private String formatTime(LocalTime time) {
-        return String.format("%02d:%02d:%02d", time.getHour(), time.getMinute(), time.getSecond());
+    private void showEmployeesByDate(LocalDate date) {
+        List<EmployeeWithTime> filteredEmployees = employees.stream()
+                .filter(employee -> employee.getArrivalTime().toLocalDate().equals(date))
+                .collect(Collectors.toList());
+        employeeGrid.setItems(filteredEmployees);
     }
 
-    private class SectionTime {
-        private String section;
-        private String time;
-
-        public SectionTime(String section, String time) {
-            this.section = section;
-            this.time = time;
-        }
-
-        public String getSection() {
-            return section;
-        }
-
-        public void setSection(String section) {
-            this.section = section;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
-    }
 }
